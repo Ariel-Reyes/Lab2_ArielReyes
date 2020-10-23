@@ -16,7 +16,8 @@ public class Lab2_ArielReyes {
 
     static ArrayList detec = new ArrayList();
     static Scanner leer = new Scanner(System.in);
- static Scanner caso = new Scanner(System.in);
+    static ArrayList caso = new ArrayList();
+
     public static void main(String[] args) {
 
         int opcion = 0;
@@ -33,7 +34,7 @@ public class Lab2_ArielReyes {
             System.out.println("8) Listar casos resueltos");
             System.out.println("9) Listar casos pendientes");
             System.out.println("10) salir");
-            
+
             opcion = leer.nextInt();
 
             switch (opcion) {
@@ -142,7 +143,7 @@ public class Lab2_ArielReyes {
                     break;
 
                 case 4:
-                    if(detec.size()==0){
+                    if (detec.size() == 0) {
                         System.out.println("La lista aun esta vacia :( ");
                     } else {
 
@@ -157,6 +158,68 @@ public class Lab2_ArielReyes {
 
                 case 5:
                     System.out.println("--Registro de casos--");
+
+                    System.out.println("Ingrese el lugar: ");
+                    leer.nextLine();
+                    String lugar = leer.nextLine();
+                    System.out.println("Ingrese la descripcion: ");
+
+                    String descrip = leer.nextLine();
+                    System.out.println("Ingrese el tipo (1) Homicidio, 2) Robo, 3) Secuestro): ");
+                    int tipo = leer.nextInt();
+                    while (tipo <= 0 || tipo > 3) {
+                        System.out.println("Hubo un error al ingresar el tipo,Ingrese el tipo (Homicidio, Robo, Secuestro): ");
+                        tipo = leer.nextInt();
+                    }
+
+                    String tipo_v2 = "";
+                    if (tipo == 1) {
+                        tipo_v2 = "HOMICIDIO";
+                    }
+                    if (tipo == 2) {
+                        tipo_v2 = "ROBO";
+                    }
+                    if (tipo == 3) {
+                        tipo_v2 = "SECUESTRO";
+                    }
+
+                    String acu = "";
+                    for (int i = 0; i < detec.size(); i++) {
+                        acu += i + ")" + detec.get(i) + "\n";
+                    }
+                    System.out.println("---Detectives----");
+                    System.out.println(acu);
+                    System.out.println("Ingrese el nombre del detective desea para este caso: ");
+                    String detec_nom = leer.next();
+
+                    if (acu.contains(detec_nom)) {
+
+                    } else {
+                        System.out.println("Error ,Ingrese el nombre del detective desea para este caso: ");
+                        detec_nom = leer.next();
+                    }
+                    System.out.println("Ingrese el estado (1) proceso,2) resuelto)");
+                    int estado = leer.nextInt();
+                    while (estado <= 0 || estado > 2) {
+                        System.out.println("Ingreso un estado mal, Ingrese el estado (1) proceso,2) resuelto)");
+                        estado = leer.nextInt();
+                    }
+                    String estado_v2 = "";
+                    if (estado == 1) {
+                        estado_v2 = "PROCESO";
+                    }
+                    if (estado == 2) {
+                        estado_v2 = "RESUELTO";
+                    }
+
+                    casos C = new casos();
+                    C.setCargo(detec_nom);
+                    C.setEstado(estado_v2);
+                    C.setTipo(tipo_v2);
+                    C.setLugar(lugar);
+                    C.setDescrip(descrip);
+                    caso.add(C);
+                    System.out.println(caso);
 
                     break;
 
