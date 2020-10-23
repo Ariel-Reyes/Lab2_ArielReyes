@@ -70,7 +70,7 @@ public class casos {
     }
 
     public String toString() {
-        return "Lugar: " + lugar + " Descripcion: " + descrip + " tipo: " + tipo + " Cargo" + cargo + " estado: " + estado;
+        return "Lugar: " + lugar + " Descripcion: " + descrip + " tipo: " + tipo + " Cargo: " + cargo + " estado: " + estado;
     }
 
 
