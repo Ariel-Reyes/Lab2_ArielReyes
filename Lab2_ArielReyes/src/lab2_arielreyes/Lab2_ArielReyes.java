@@ -17,12 +17,13 @@ public class Lab2_ArielReyes {
     static ArrayList detec = new ArrayList();
     static Scanner leer = new Scanner(System.in);
     static ArrayList caso = new ArrayList();
-  static String go = "";
+    static String go = "";
+
     public static void main(String[] args) {
 
         int opcion = 0;
         while (opcion != 10) {
-
+ // menu 
             System.out.println("----Menu----");
             System.out.println("1) Agregar Detective");
             System.out.println("2) Eliminar Detective");
@@ -38,12 +39,12 @@ public class Lab2_ArielReyes {
             opcion = leer.nextInt();
 
             switch (opcion) {
-                case 1:
+                case 1: // creacion del detective 
                     System.out.println("Ingrese el nombre del detective: ");
                     String nombre = leer.next();
                     System.out.println("Ingrese la edad: ");
                     int edad = leer.nextInt();
-                    while (edad <= 0) {
+                    while (edad <= 0) { // validacion por si ingresa un numero que no es en la edad 
                         System.out.println("Ingreso algo mal,Ingrese la edad: ");
                         edad = leer.nextInt();
                     }
@@ -51,25 +52,30 @@ public class Lab2_ArielReyes {
                     String nacionalidad = leer.next();
                     System.out.println("Years laborales: ");
                     int year_labo = leer.nextInt();
+                    while(year_labo<=0){
+                        System.out.println("Error ,Years laborales: ");
+                     year_labo = leer.nextInt();
+                    }
                     System.out.println("Nivel de rango: ");
                     int nivel = leer.nextInt();
-                    while (nivel <= 0 || nivel > 10) {
+                    while (nivel <= 0 || nivel > 10) { // para que no se salga del rango de los nivels 
                         System.out.println("Ingreso algo incorrecto, Ingrese nivel de rango: ");
                         nivel = leer.nextInt();
                     }
                     detectives H = new detectives(nombre, edad, nacionalidad, year_labo, nivel);
-                    detec.add(H);
+                    detec.add(H); // se agrega a el ArrayList que contiene a nuestros detectives 
 
                     break;
-                case 2:
-                    if (detec.size() == 0) {
+                case 2: // Eliminacion de un detective 
+                    if (detec.size() == 0) { // validacion por si quiere entrar a esta opcion sin ningun detective en los arrayList
                         System.out.println("Aun no hay detectives registrados");
                     } else {
                         String acu = "";
                         for (int i = 0; i < detec.size(); i++) {
                             acu += i + ")" + detec.get(i) + "\n";
-                        }
+                        } // impresion de las opciones que hay para los detectives 
                         System.out.println(acu);
+
                         System.out.println("Ingrese el detective que desea eliminar: ");
                         int eliminar = leer.nextInt();
                         while (eliminar < 0 || eliminar > detec.size()) {
@@ -82,8 +88,8 @@ public class Lab2_ArielReyes {
                     }
                     break;
 
-                case 3:
-                    if (detec.size() == 0) {
+                case 3: // Modificacion de un detective 
+                    if (detec.size() == 0) { 
                         System.out.println("Aun no hay detectives registrados");
                     } else {
                         String acu = "";
@@ -93,12 +99,16 @@ public class Lab2_ArielReyes {
                         System.out.println("--Modificar Detectives--");
                         System.out.println(acu);
                         System.out.println("Ingrese el indice del que desea modificar: ");
-                        int indice = leer.nextInt();
-
+                        int indice = leer.nextInt(); // se manda el indice que se desea modificar 
+                        while (indice < 0 || indice > detec.size()) { // validacion por si ingresa unn numero que no este en el arrayList
+                            System.out.println("Error ingreso un indice invalido,Ingrese el indice del que desea modificar: ");
+                            indice = leer.nextInt();
+                        }
                         System.out.println("Ingrese el que desea modificar " + "\n" + "1) Nombre" + "\n" + "2) edad" + "3) Nacionalidad" + "\n" + "4) años laborales" + "\n" + "5) Nivel de rango" + "\n" + "Ingrese la opcion que desea modificar: ");
-                        int mod = leer.nextInt();
+                        int mod = leer.nextInt(); 
                         switch (mod) {
                             case 1:
+                                // modificaciones para los datos 
                                 System.out.println("Ingrese un nombre: ");
                                 nombre = leer.next();
                                 ((detectives) detec.get(indice)).setNombre(nombre);
@@ -143,7 +153,7 @@ public class Lab2_ArielReyes {
                     break;
 
                 case 4:
-                    if (detec.size() == 0) {
+                    if (detec.size() == 0) { 
                         System.out.println("La lista aun esta vacia :( ");
                     } else {
 
@@ -152,7 +162,7 @@ public class Lab2_ArielReyes {
                         for (int i = 0; i < detec.size(); i++) {
                             acu += i + ")" + detec.get(i) + "\n";
                         }
-                        System.out.println(acu);
+                        System.out.println(acu);// se imprime la lista de detectives 
                     }
                     break;
 
@@ -167,7 +177,7 @@ public class Lab2_ArielReyes {
                     String descrip = leer.nextLine();
                     System.out.println("Ingrese el tipo (1) Homicidio, 2) Robo, 3) Secuestro): ");
                     int tipo = leer.nextInt();
-                    while (tipo <= 0 || tipo > 3) {
+                    while (tipo <= 0 || tipo > 3) { // validacion por si ingresa un numero muy grande o peque;o 
                         System.out.println("Hubo un error al ingresar el tipo,Ingrese el tipo (Homicidio, Robo, Secuestro): ");
                         tipo = leer.nextInt();
                     }
@@ -182,7 +192,7 @@ public class Lab2_ArielReyes {
                     if (tipo == 3) {
                         tipo_v2 = "SECUESTRO";
                     }
-                    String detec_nom ="";
+                    String detec_nom = "";
                     if (detec.size() == 0) {
                         System.out.println("No hay detectives disponible");
                     } else {
@@ -192,15 +202,14 @@ public class Lab2_ArielReyes {
                         }
                         System.out.println("---Detectives----");
                         System.out.println(go);
-                        System.out.println("No existe ese detective,Ingrese el nombre del detective desea para este caso: ");
+                        System.out.println("Ingrese el nombre del detective desea para este caso: ");
                         detec_nom = leer.next();
 
+                        while (!(go.contains(detec_nom))) {
+                            System.out.println("Error ingrese un nombre de la lista: ");
+                            detec_nom = leer.next();
+                        }
 
-                         while(!(go.contains(detec_nom))){
-                             System.out.println("Ingrese el nombre del detective desea para este caso: ");
-                         detec_nom = leer.next();
-                         }
-                      
                     }
                     System.out.println("Ingrese el estado (1) proceso,2) resuelto)");
                     int estado = leer.nextInt();
@@ -215,7 +224,7 @@ public class Lab2_ArielReyes {
                     if (estado == 2) {
                         estado_v2 = "RESUELTO";
                     }
-
+             // se mandan todos los datos 
                     casos C = new casos();
                     C.setCargo(detec_nom);
                     C.setEstado(estado_v2);
@@ -238,11 +247,13 @@ public class Lab2_ArielReyes {
                         }
                         System.out.println("--casos--");
                         System.out.println(ac + "\n" + "Ingrese el indice a modificar: ");
-                         int indice = leer.nextInt();
+                        int indice = leer.nextInt();
+                        while (indice < 0 || indice > caso.size()) {
+                            System.out.println("Error ingreso un numero invalido, Ingrese otro indice: ");
+                            indice = leer.nextInt();
+                        }
 
                         System.out.println("Ingrese donde desea modificar: " + "\n" + "1) Lugar" + "\n" + "2) Descripcion" + "\n" + "3) tipo" + "\n" + "4) Detective a cargo" + "\n" + "5) Estado" + "\n" + "Ingrese la opcion : ");
-                       
-                        
 
                         int op = leer.nextInt();
                         switch (op) {
@@ -292,7 +303,7 @@ public class Lab2_ArielReyes {
                                     System.out.println(go);
                                     System.out.println("Ingrese el nombre del detective desea para este caso: ");
                                     detec_nom = leer.next();
-                                    
+
                                     while (!(go.contains(detec_nom))) {
                                         System.out.println("No existe ese detective,Ingrese el nombre del detective desea para este caso: ");
                                         detec_nom = leer.next();
@@ -303,6 +314,7 @@ public class Lab2_ArielReyes {
 
                                 break;
                             case 5:
+
                                 System.out.println("Ingrese el estado (1) proceso,2) resuelto)");
                                 estado = leer.nextInt();
                                 while (estado <= 0 || estado > 2) {
@@ -316,7 +328,7 @@ public class Lab2_ArielReyes {
                                 if (estado == 2) {
                                     estado_v2 = "RESUELTO";
                                 }
-                                  ((casos) caso.get(indice)).setEstado(estado_v2);
+                                ((casos) caso.get(indice)).setEstado(estado_v2);
 
                                 break;
                         }
@@ -324,8 +336,10 @@ public class Lab2_ArielReyes {
                     }
                     break;
                 case 7:
+                   
                     if (caso.size() == 0) {
                         System.out.println("Aun no hay casos ");
+                        System.out.println("Aun no hay casos");
                     } else {
                         System.out.println("--LISTAR CASOS--");
                         String acux = "";
@@ -337,35 +351,43 @@ public class Lab2_ArielReyes {
                     break;
 
                 case 8:
-                    String cade = "";
-                    String re = "";
-                    for (int i = 0; i < caso.size(); i++) {
+                    if (caso.size() == 0) {
+                        System.out.println("Aun no hay casos");
+                    } else {
+                        String cade = "";
+                        String re = "";
+                        for (int i = 0; i < caso.size(); i++) {
 
-                        cade = ((casos) caso.get(i)).getEstado();
-                        if (cade.equals("RESUELTO")) {
-                            re += re + caso.get(i);
+                            cade = ((casos) caso.get(i)).getEstado();
+                            if (cade.equals("RESUELTO")) {
+                                re += re + caso.get(i) + "\n";
+                            }
+
                         }
-
+                        System.out.println("--Casos resueltos--");
+                        System.out.println(re);
                     }
-                    System.out.println("--Casos resueltos--");
-                    System.out.println(re);
-
                     break;
 
                 case 9:
-                    String cadex = "";
-                    String pr = "";
-                    for (int i = 0; i < caso.size(); i++) {
+                    if (caso.size() == 0) {
+                        System.out.println("Aun no hay casos");
+                    } else {
+                        String cadex = "";
+                        String pr = "";
+                        String dec = "";
+                        for (int i = 0; i < caso.size(); i++) {
 
-                        cadex = ((casos) caso.get(i)).getEstado();
-                        if (cadex.equals("PROCESO")) {
-                            pr += pr + caso.get(i);
+                            cadex = ((casos) caso.get(i)).getEstado();
+                            dec = ((casos) caso.get(i)).getCargo();
+                            if (cadex.equals("PROCESO")) {
+                                pr += caso.get(i) + "\n";
+                            }
+
                         }
-
+                        System.out.println("--Casos en Proceso--");
+                        System.out.println(pr);
                     }
-                    System.out.println("--Casos en Proceso--");
-                    System.out.println(pr);
-
                     break;
 
             }

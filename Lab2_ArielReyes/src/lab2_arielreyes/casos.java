@@ -12,11 +12,11 @@ package lab2_arielreyes;
 public class casos {
 
     // variables 
-    String lugar;
-    String descrip;
-    String tipo;
-    String cargo;
-    String estado;
+    private String lugar;
+    private String descrip;
+    private String tipo;
+    private String cargo;
+    private String estado;
 // constructor
 
     public casos() {
@@ -49,10 +49,8 @@ public class casos {
     public void setDescrip(String descrip) {
         this.descrip = descrip;
     }
-    
 
     // getter 
-    
     public String getEstado() {
         return estado;
     }
@@ -77,6 +75,4 @@ public class casos {
         return "Lugar: " + lugar + " Descripcion: " + descrip + " tipo: " + tipo + " Cargo: " + cargo + " estado: " + estado;
     }
 
-
-    
 }

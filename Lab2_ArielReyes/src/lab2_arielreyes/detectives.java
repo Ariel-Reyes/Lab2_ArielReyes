@@ -12,11 +12,11 @@ package lab2_arielreyes;
 public class detectives {
 // variables
 
-    String nombre;
-    int edad;
-    String nacionalidad;
-    int years_labora;
-    int nivel;
+    private String nombre;
+    private int edad;
+    private String nacionalidad;
+    private int years_labora;
+    private int nivel;
 // constructor 
 
     public detectives(String nombre, int edad, String nacionalidad, int years_labora, int nivel) {
@@ -67,7 +67,7 @@ public class detectives {
         return years_labora;
     }
 
-    public String toString(){
-        return "El nombre es: " + nombre + " La edad: " + edad + " La nacionalidad: " + nacionalidad + " Años laborales: "+years_labora +" Nivel: "+nivel ; 
+    public String toString() {
+        return "El nombre es: " + nombre + " La edad: " + edad + " La nacionalidad: " + nacionalidad + " Años laborales: " + years_labora + " Nivel: " + nivel;
     }
 }
