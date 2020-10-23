@@ -236,28 +236,136 @@ public class Lab2_ArielReyes {
                         for (int i = 0; i < caso.size(); i++) {
                             ac += i + ")" + caso.get(i) + "\n";
                         }
-                        System.out.println(ac);
-                        System.out.println("Ingrese donde desea modificar: " + "\n" + "1) Lugar" + "\n" + "2) Descripcion" + "\n" + "3) tipo" + "\n" + "4) Detective a cargo" + "\n" + "5) Estado" + "\n" + "Ingrese la opcion que desea: ");
+                        System.out.println("--casos--");
+                        System.out.println(ac + "\n" + "Ingrese el indice a modificar: ");
+                         int indice = leer.nextInt();
+
+                        System.out.println("Ingrese donde desea modificar: " + "\n" + "1) Lugar" + "\n" + "2) Descripcion" + "\n" + "3) tipo" + "\n" + "4) Detective a cargo" + "\n" + "5) Estado" + "\n" + "Ingrese la opcion : ");
+                       
+                        
+
                         int op = leer.nextInt();
                         switch (op) {
                             case 1:
                                 System.out.println("Ingrese el lugar: ");
                                 leer.nextLine();
                                 lugar = leer.nextLine();
+                                ((casos) caso.get(indice)).setLugar(lugar);
                                 break;
                             case 2:
-                                leer.nextLine(); 
+                                leer.nextLine();
                                 System.out.println("Ingrese la descripcion: ");
-                                 descrip = leer.nextLine();
+                                descrip = leer.nextLine();
+                                ((casos) caso.get(indice)).setDescrip(descrip);
 
                                 break;
                             case 3:
-                                
-                                break; 
+                                System.out.println("Ingrese el tipo (1) Homicidio, 2) Robo, 3) Secuestro): ");
+                                tipo = leer.nextInt();
+                                while (tipo <= 0 || tipo > 3) {
+                                    System.out.println("Hubo un error al ingresar el tipo,Ingrese el tipo (1) Homicidio, 2)Robo, 3)Secuestro): ");
+                                    tipo = leer.nextInt();
+                                }
+                                tipo_v2 = "";
+                                if (tipo == 1) {
+                                    tipo_v2 = "HOMICIDIO";
+                                }
+                                if (tipo == 2) {
+                                    tipo_v2 = "ROBO";
+                                }
+                                if (tipo == 3) {
+                                    tipo_v2 = "SECUESTRO";
+                                }
+                                ((casos) caso.get(indice)).setTipo(tipo_v2);
+
+                                break;
+                            case 4:
+                                detec_nom = "";
+                                if (detec.size() == 0) {
+                                    System.out.println("No hay detectives disponible");
+                                } else {
+                                    String acu = "";
+                                    for (int i = 0; i < detec.size(); i++) {
+                                        go += i + ")" + detec.get(i) + "\n";
+                                    }
+                                    System.out.println("---Detectives----");
+                                    System.out.println(go);
+                                    System.out.println("Ingrese el nombre del detective desea para este caso: ");
+                                    detec_nom = leer.next();
+                                    
+                                    while (!(go.contains(detec_nom))) {
+                                        System.out.println("No existe ese detective,Ingrese el nombre del detective desea para este caso: ");
+                                        detec_nom = leer.next();
+                                    }
+                                    ((casos) caso.get(indice)).setCargo(detec_nom);
+
+                                }
+
+                                break;
+                            case 5:
+                                System.out.println("Ingrese el estado (1) proceso,2) resuelto)");
+                                estado = leer.nextInt();
+                                while (estado <= 0 || estado > 2) {
+                                    System.out.println("Ingreso un estado mal, Ingrese el estado (1) proceso,2) resuelto)");
+                                    estado = leer.nextInt();
+                                }
+                                estado_v2 = "";
+                                if (estado == 1) {
+                                    estado_v2 = "PROCESO";
+                                }
+                                if (estado == 2) {
+                                    estado_v2 = "RESUELTO";
+                                }
+                                  ((casos) caso.get(indice)).setEstado(estado_v2);
+
+                                break;
                         }
 
-                        
                     }
+                    break;
+                case 7:
+                    if (caso.size() == 0) {
+                        System.out.println("Aun no hay casos ");
+                    } else {
+                        System.out.println("--LISTAR CASOS--");
+                        String acux = "";
+                        for (int i = 0; i < caso.size(); i++) {
+                            acux += i + ")" + caso.get(i) + "\n";
+                        }
+                        System.out.println(acux);
+                    }
+                    break;
+
+                case 8:
+                    String cade = "";
+                    String re = "";
+                    for (int i = 0; i < caso.size(); i++) {
+
+                        cade = ((casos) caso.get(i)).getEstado();
+                        if (cade.equals("RESUELTO")) {
+                            re += re + caso.get(i);
+                        }
+
+                    }
+                    System.out.println("--Casos resueltos--");
+                    System.out.println(re);
+
+                    break;
+
+                case 9:
+                    String cadex = "";
+                    String pr = "";
+                    for (int i = 0; i < caso.size(); i++) {
+
+                        cadex = ((casos) caso.get(i)).getEstado();
+                        if (cadex.equals("PROCESO")) {
+                            pr += pr + caso.get(i);
+                        }
+
+                    }
+                    System.out.println("--Casos en Proceso--");
+                    System.out.println(pr);
+
                     break;
 
             }

@@ -53,6 +53,10 @@ public class casos {
 
     // getter 
     
+    public String getEstado() {
+        return estado;
+    }
+
     public String getLugar() {
         return lugar;
     }
